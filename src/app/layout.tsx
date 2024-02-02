@@ -14,18 +14,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="grid h-full">
+    <html lang="en" className="bg-default text-primary">
       <body
         className={cx(
           ...fonts.tailwindFonts.map((font) => font.variable),
           fonts.roboto.className,
-          "grid min-h-full grid-rows-[auto_1fr]",
         )}
       >
         <div>Header</div>
-        <div className="grid grid-cols-[1fr_min(65ch,100%)_1fr] grid-rows-[min-content] gap-y-12 [&>*]:col-start-2">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
