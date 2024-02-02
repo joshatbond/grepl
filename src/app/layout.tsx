@@ -1,6 +1,7 @@
 import "~/styles/globals.css";
 import { cx } from "class-variance-authority";
 import * as fonts from "~/fonts";
+import Header from "./_components/Header";
 
 export const metadata = {
   title: "Grepl",
@@ -22,7 +23,7 @@ export default function RootLayout({
           "grid grid-rows-[auto,1fr]",
         )}
       >
-        <div>Header</div>
+        <Header />
         {children}
       </body>
     </html>
