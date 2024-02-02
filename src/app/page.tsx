@@ -3,11 +3,11 @@ import TitleBoard from "./_components/TitleBoard";
 export default function HomePage() {
   return (
     <main className="wrapper place-content-center gap-y-12">
-      <div className="wrapper__full-bleed">
+      <div className="wrapper__full-bleed overflow-hidden">
         <TitleBoard />
       </div>
 
-      <article className="text-center">
+      <article className="px-4 text-center">
         <p>
           <span className="text-xl font-bold">Meet Grepl,</span> a classic
           word-finding game.

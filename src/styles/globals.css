@@ -125,7 +125,7 @@ a {
   display: grid;
   grid-template-columns: 1fr min(65ch, 100%) 1fr;
   grid-template-rows: min-content;
-  min-height: calc(100vh - 76px);
+  min-height: 100%;
 }
 .wrapper > * {
   grid-column: 2;
