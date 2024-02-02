@@ -1,0 +1,151 @@
+.board {
+  --cube-size: 3em;
+  --grid-size: 20em;
+  --color-top: hsl(0, 5%, 84%);
+  --color-side: hsl(0, 5%, 70%);
+  --color-front: hsl(0, 5%, 50%);
+  --color-board-top: hsl(205, 67%, 47%);
+  --color-board-side: hsl(205, 67%, 40%);
+  --color-board-front: hsl(205, 67%, 30%);
+  --duration: 4s;
+
+  height: 20em;
+  width: 20em;
+  margin: 6rem auto 0 auto;
+  padding: 3rem;
+  transform: perspective(500px) rotateX(30deg) rotateZ(-10deg);
+  transform-style: preserve-3d;
+  color: var(--clr-neutral-900);
+}
+.base,
+.base::before,
+.base::after {
+  height: 14.9em;
+  width: 14.9em;
+  top: -1em;
+  left: -1em;
+}
+.base {
+  position: relative;
+  background-color: var(--color-board-top);
+  transform: rotateZ(0deg) translateZ(2.2em);
+  transform-style: preserve-3d;
+}
+.base::before,
+.base::after {
+  content: "";
+  position: absolute;
+}
+.base::before {
+  width: 2em;
+  background-color: var(--color-board-side);
+  transform-origin: right top;
+  transform: rotateY(90deg) translate3d(2em, 1em, -1em);
+}
+.base::after {
+  height: 2em;
+  background-color: var(--color-board-front);
+  transform-origin: right bottom;
+  transform: rotateX(-90deg) translate3d(1em, 2em, 13.9em);
+}
+
+.cube,
+.cube:before,
+.cube:after {
+  width: var(--cube-size);
+  height: var(--cube-size);
+  float: left;
+  box-shadow: inset 0 0 0 0.25em hsla(0, 0%, 0%, 0.1);
+}
+.cube {
+  position: relative;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+  transform-style: preserve-3d;
+  transform: rotateZ(0deg) translateZ(var(--cube-size));
+  transition: 0.25s;
+  background-color: var(--color-top);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  animation: wave 3s ease-in-out infinite;
+}
+.cube:before,
+.cube:after {
+  content: "";
+  position: absolute;
+}
+.cube:before {
+  background-color: var(--color-side);
+  transform-origin: right top;
+  transform: rotateY(90deg)
+    translate3d(var(--cube-size), 0, calc(-1 * var(--cube-size)));
+}
+.cube:after {
+  background-color: var(--color-front);
+  transform-origin: right bottom;
+  transform: rotateX(-90deg) translateY(var(--cube-size));
+}
+.cubeActive {
+  --color-top: hsl(121, 39%, 47%);
+  --color-side: hsl(145, 39%, 40%);
+  --color-front: hsl(145, 39%, 28%);
+}
+.delay-none {
+  animation-delay: 0ms;
+}
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+.delay-600 {
+  animation-delay: 600ms;
+}
+.delay-700 {
+  animation-delay: 700ms;
+}
+.delay-800 {
+  animation-delay: 800ms;
+}
+.delay-900 {
+  animation-delay: 900ms;
+}
+.delay-1000 {
+  animation-delay: 1000ms;
+}
+.delay-1100 {
+  animation-delay: 1100ms;
+}
+.delay-1200 {
+  animation-delay: 1200ms;
+}
+.delay-1300 {
+  animation-delay: 1300ms;
+}
+.delay-1400 {
+  animation-delay: 1400ms;
+}
+.delay-1500 {
+  animation-delay: 1500ms;
+}
+.delay-1600 {
+  animation-delay: 1600ms;
+}
+
+@keyframes wave {
+  50% {
+    transform: translateZ(calc(1.5 * var(--cube-size)));
+  }
+}
