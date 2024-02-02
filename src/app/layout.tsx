@@ -19,6 +19,7 @@ export default function RootLayout({
         className={cx(
           ...fonts.tailwindFonts.map((font) => font.variable),
           fonts.roboto.className,
+          "grid grid-rows-[auto,1fr]",
         )}
       >
         <div>Header</div>
