@@ -1,6 +1,7 @@
 import { cx } from 'class-variance-authority'
 
 import * as fonts from '~/fonts'
+import { getTheme } from '~/lib/getTheme'
 import '~/styles/globals.css'
 
 import Header from './_components/Header'
@@ -18,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-default text-primary">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: getTheme }} />
+      </head>
       <body
         className={cx(
           ...fonts.tailwindFonts.map(font => font.variable),

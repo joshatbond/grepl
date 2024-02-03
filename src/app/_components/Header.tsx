@@ -1,6 +1,12 @@
 import { cx } from 'class-variance-authority'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { type ReactNode } from 'react'
+
+const Theme = dynamic(() => import('./Theme'), {
+  ssr: false,
+  loading: () => <div className="w-6 h-6" />,
+})
 
 export default function Header() {
   return (
@@ -20,14 +26,16 @@ export default function Header() {
           </h1>
         </Link>
 
-        <div className="flex items-baseline gap-4 text-primary">
+        <div className="flex items-center gap-4 text-primary">
           <NavItem
             to="/play"
-            className="bg-primary-500 rounded-lg px-4 py-1 text-neutral-100"
+            className="rounded-lg bg-primary-500 px-4 py-1 text-neutral-100"
           >
             Play
           </NavItem>
           <NavItem to="/profile">Profile</NavItem>
+
+          <Theme />
         </div>
       </nav>
     </header>
