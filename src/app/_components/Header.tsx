@@ -1,6 +1,6 @@
-import { cx } from "class-variance-authority";
-import Link from "next/link";
-import { type ReactNode } from "react";
+import { cx } from 'class-variance-authority'
+import Link from 'next/link'
+import { type ReactNode } from 'react'
 
 export default function Header() {
   return (
@@ -31,7 +31,7 @@ export default function Header() {
         </div>
       </nav>
     </header>
-  );
+  )
 }
 
 function NavItem({
@@ -39,20 +39,20 @@ function NavItem({
   className,
   to,
 }: {
-  children: ReactNode;
-  className?: string;
-  to: string;
+  children: ReactNode
+  className?: string
+  to: string
 }) {
   return (
     <div
       className={cx(
-        "active:animate-wiggle hover:animate-wiggle focus:animate-wiggle",
-        className,
+        'active:animate-wiggle hover:animate-wiggle focus:animate-wiggle',
+        className
       )}
     >
       <Link href={to} role="menuitem">
         {children}
       </Link>
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import TitleBoard from "./_components/TitleBoard";
+import TitleBoard from './_components/TitleBoard'
 
 export default function HomePage() {
   return (
@@ -17,5 +17,5 @@ export default function HomePage() {
         </p>
       </article>
     </main>
-  );
+  )
 }
