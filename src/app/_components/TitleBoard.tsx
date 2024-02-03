@@ -1,5 +1,6 @@
-import { cx } from "class-variance-authority";
-import styles from "~/styles/titleBoard.module.css";
+import { cx } from 'class-variance-authority'
+
+import styles from '~/styles/titleBoard.module.css'
 
 export default function TitleBoard() {
   return (
@@ -7,14 +8,14 @@ export default function TitleBoard() {
       <Cubes />
       <div className={styles.base}></div>
     </div>
-  );
+  )
 }
 
 function Cubes() {
-  const cubes = "gqvxkrwtyewlbopm".split("");
+  const cubes = 'gqvxkrwtyewlbopm'.split('')
   const getColor = (n: number) =>
-    [0, 5, 9, 11, 14].includes(n) ? styles.cubeActive : "";
-  const getDelay = (n: number) => styles[`delay-${(n + 1) * 100}`] ?? "";
+    [0, 5, 9, 11, 14].includes(n) ? styles.cubeActive : ''
+  const getDelay = (n: number) => styles[`delay-${(n + 1) * 100}`] ?? ''
 
   return (
     <>
@@ -24,5 +25,5 @@ function Cubes() {
         </div>
       ))}
     </>
-  );
+  )
 }

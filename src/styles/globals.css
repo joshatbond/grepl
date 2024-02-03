@@ -76,12 +76,6 @@ a {
                                   Themes
 ******************************************************************************/
 :root {
-  /* Theme variables */
-  --clr-bg: var(--clr-primary-300);
-  --clr-bg-accent: var(--clr-primary-400);
-  --clr-text-primary: var(--clr-netural-900);
-  --clr-text-inverted: var(--clr-neutral-100);
-
   /* Specific colors */
   --clr-primary-100: hsl(219, 73%, 96%);
   --clr-primary-200: hsl(219, 73%, 90%);
@@ -114,7 +108,15 @@ a {
   --clr-warn-600: hsl(32, 95%, 44%);
 }
 
-.dark {
+html[data-theme='light'] {
+  color-scheme: light;
+  --clr-bg: var(--clr-primary-300);
+  --clr-bg-accent: var(--clr-primary-400);
+  --clr-text-primary: var(--clr-netural-900);
+  --clr-text-inverted: var(--clr-neutral-100);
+}
+html[data-theme='dark'] {
+  color-scheme: dark;
   --clr-bg: var(--clr-primary-900);
   --clr-bg-accent: var(--clr-primary-700);
   --clr-text-primary: var(--clr-neutral-100);

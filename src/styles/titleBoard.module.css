@@ -33,7 +33,7 @@
 }
 .base::before,
 .base::after {
-  content: "";
+  content: '';
   position: absolute;
 }
 .base::before {
@@ -73,7 +73,7 @@
 }
 .cube:before,
 .cube:after {
-  content: "";
+  content: '';
   position: absolute;
 }
 .cube:before {
