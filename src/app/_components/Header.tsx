@@ -17,6 +17,18 @@ export default function Header() {
             <span className="nav__link--l">l</span>
           </h1>
         </Link>
+
+        <div className="[&>a]:hover:animate-wiggle [&>a]:active:animate-wiggle [&>a]:focus:animate-wiggle flex items-baseline gap-4 text-primary">
+          <Link href="/play" role="menuitem">
+            <span className="bg-primary-500 rounded-lg px-4 py-1 text-neutral-100 ">
+              Play
+            </span>
+          </Link>
+
+          <Link href="/profile" role="menuitem">
+            <span>Profile</span>
+          </Link>
+        </div>
       </nav>
     </header>
   );
