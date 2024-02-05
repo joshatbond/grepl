@@ -1,9 +1,9 @@
+import { cx } from 'class-variance-authority'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { usePrevious } from 'react-use'
 
 import { useIntersecting } from '../_hooks/useIntersecting'
 import gameStore, { findPath, getAdj } from '../_store/store'
-import { cx } from 'class-variance-authority'
 import styles from './play.module.css'
 
 export default function Cells() {
