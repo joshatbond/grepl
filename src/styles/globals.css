@@ -73,6 +73,22 @@ a {
 }
 
 /******************************************************************************
+                                  Scrollbar
+******************************************************************************/
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 100%;
+  background-color: inherit;
+}
+.scrollbar::-webkit-scrollbar-track {
+  background-color: inherit;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(---clr-bg);
+  border-radius: 2rem;
+}
+
+/******************************************************************************
                                   Themes
 ******************************************************************************/
 :root {
@@ -97,6 +113,26 @@ a {
   --clr-neutral-800: hsl(0, 0%, 15%);
   --clr-neutral-900: hsl(0, 0%, 7%);
 
+  --clr-slate-100: #f1f5f9;
+  --clr-slate-200: #e2e8f0;
+  --clr-slate-300: #cbd5e1;
+  --clr-slate-400: #94a3b8;
+  --clr-slate-500: #64748b;
+  --clr-slate-600: #475569;
+  --clr-slate-700: #334155;
+  --clr-slate-800: #1e293b;
+  --clr-slate-900: #0f172a;
+
+  --clr-green-100: #d1fae5;
+  --clr-green-200: #a7f3d0;
+  --clr-green-300: #6ee7b7;
+  --clr-green-400: #34d399;
+  --clr-green-500: #10b981;
+  --clr-green-600: #059669;
+  --clr-green-700: #047857;
+  --clr-green-800: #065f46;
+  --clr-green-900: #064e3b;
+
   --clr-error-400: hsl(0, 91%, 71%);
   --clr-error-500: hsl(0, 84%, 60%);
   --clr-error-600: hsl(0, 72%, 51%);
@@ -110,17 +146,63 @@ a {
 
 html[data-theme='light'] {
   color-scheme: light;
+
+  /* General colors */
   --clr-bg: var(--clr-primary-300);
   --clr-bg-accent: var(--clr-primary-400);
   --clr-text-primary: var(--clr-netural-900);
   --clr-text-inverted: var(--clr-neutral-100);
+
+  /* Game colors */
+  --clr-activate: var(--clr-primary-500);
+  --clr-adj-line: var(--clr-green-600);
+  --clr-btn: var(--clr-primary-200);
+  --clr-clear: var(--clr-error-400);
+  --clr-from: var(--clr-primary-100);
+  --clr-from-adj: var(--clr-slate-200);
+  --clr-from-selected: var(--clr-primary-200);
+  --clr-text-activate: var(--clr-text-inverted);
+  --clr-tile: var(--clr-primary-200);
+  --clr-tile-adj: var(--clr-slate-300);
+  --clr-tile-selected: var(--clr-primary-300);
+  --clr-text-danger: var(--clr-error-500);
+  --clr-text-warn: var(--clr-warn-600);
+  --clr-to: var(--clr-primary-300);
+  --clr-to-adj: var(--clr-slate-400);
+  --clr-tile-on: var(--clr-primary-500);
+  --clr-tile-adj-on: var(--clr-slate-400);
+  --clr-to-selected: var(--clr-primary-400);
+  --clr-tile-selected-on: var(--clr-primary-400);
 }
 html[data-theme='dark'] {
   color-scheme: dark;
+
+  /* General colors */
   --clr-bg: var(--clr-primary-900);
   --clr-bg-accent: var(--clr-primary-700);
   --clr-text-primary: var(--clr-neutral-100);
   --clr-text-inverted: var(--clr-neutral-900);
+
+  /* Game colors */
+  --clr-activate: var(--clr-primary-500);
+  --clr-adj-line: var(--clr-green-400);
+  --clr-btn: var(--clr-neutral-600);
+  --clr-clear: var(--clr-error-700);
+  --clr-from: var(--clr-primary-700);
+  --clr-from-adj: var(--clr-slate-600);
+  --clr-from-selected: var(--clr-primary-400);
+  --clr-text-activate: var(--clr-text-primary);
+  --clr-text-danger: var(--clr-error-400);
+  --clr-text-warn: var(--clr-warn-400);
+  --clr-tile: var(--clr-primary-800);
+  --clr-tile-on: var(--clr-primary-600);
+  --clr-tile-adj: var(--clr-slate-600);
+  --clr-tile-adj-on: var(--clr-slate-400);
+  --clr-tile-selected: var(--clr-primary-500);
+  --clr-tile-selected-on: var(--clr-primary-400);
+  --clr-to: var(--clr-primary-900);
+  --clr-to-adj: var(--clr-slate-800);
+  --clr-to-selected: var(--clr-primary-600);
 }
 
 .wrapper {

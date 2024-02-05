@@ -1,0 +1,87 @@
+.board {
+  --cell-size: 3rem;
+  display: grid;
+  grid-template-columns: repeat(6, var(--cell-size));
+  grid-template-rows: repeat(6, var(--cell-size));
+  place-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  color: var(--clr-text-primary);
+  touch-action: none;
+  user-select: none;
+}
+.btn {
+  border-radius: 0.25rem;
+  border: none;
+  outline: none;
+  display: grid;
+  place-content: center;
+  border-radius: 0.25rem;
+  background-color: linear-gradient(-45deg, hsl(0, 0%, 0%), hsl(0, 0%, 100%));
+  box-shadow:
+    3px 3px 4px 0 hsla(0, 0%, 0%, 0.25),
+    -2px -2px 3px 0 hsla(0, 0%, 100%, 0.3);
+}
+.btn:is(:hover, :focus, :active, [data-pressed='true']) {
+  box-shadow:
+    inset 2px 2px 3px 0 hsla(0, 0%, 0%, 0.2),
+    inset -2px -2px 3px 0 hsla(0, 0%, 100%, 0.5);
+}
+.btn[data-game-running='false'] {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.btn--play {
+  background-color: var(--clr-activate);
+  color: var(--clr-text-activate);
+}
+.btn--play:is(:hover, :focus, :active) {
+  --clr-activate: var(--clr-primary-600);
+}
+.cell {
+}
+.cell[data-selected='adjacent'] {
+  --clr-from: var(--clr-from-adj);
+  --clr-to: var(--clr-to-adj);
+  --clr-tile: var(--clr-tile-adj);
+}
+.cell[data-selected='adjacent']:is(:active, :focus, :hover) {
+  --clr-tile: var(--clr-tile-adj-on);
+}
+.cell[data-selected='selected'] {
+  --clr-from: var(--clr-from-selected);
+  --clr-to: var(--clr-to-selected);
+  --clr-tile: var(--clr-tile-selected);
+}
+.cell[data-selected='selected']:is(:active, :focus, :hover) {
+  --clr-tile: var(--clr-tile-selected-on);
+  color: var(--clr-text-inverted);
+}
+.adj--r {
+  top: 50%;
+  right: -50%;
+  transform: translateY(-50%);
+}
+.adj--bl {
+  bottom: 0;
+  transform: translate(-50%, 50%) rotate(-45deg);
+}
+.adj--b {
+  bottom: 0;
+  transform: rotate(90deg);
+}
+.adj--br {
+  bottom: 0;
+  transform: translate(50%, 50%) rotate(45deg);
+}
+.word {
+}
+.word[data-warn='true'] {
+  color: var(--clr-text-warn);
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
