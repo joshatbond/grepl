@@ -93,9 +93,8 @@ function Cell({
       : ''
 
   const handleClick = useCallback(() => {
-    if (!gameStarted) return
-    if (!isWithinCell || isWithinCell === wasWithinCell) return
-    if (!isWithinCell) return
+    if (!gameStarted || !isWithinCell || isWithinCell === wasWithinCell) return
+
     if (currentWord.length === 0 || isAdjacent) addLetterToWord(position)
     if (currentWord.includes(position)) removeLetterFromWord(position)
   }, [
