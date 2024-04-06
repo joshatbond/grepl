@@ -1,16 +1,21 @@
 'use client'
 
 import { CorbadoAuth, useCorbado } from '@corbado/react'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 import NavItem from './NavItem'
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 export default function LoginOrProfile() {
+  const pathname = usePathname()
   const { isAuthenticated, loading } = useCorbado()
   const [showAuth, showAuthAssign] = useState(false)
+
+  useEffect(() => {
+    showAuthAssign(false)
+  }, [pathname])
 
   if (loading) {
     return <div>Loading...</div>
@@ -27,7 +32,7 @@ export default function LoginOrProfile() {
               <Login />
 
               <button
-                className="absolute right-4 top-4 rounded px-3 py-1 hover:bg-neutral-400"
+                className="absolute right-4 top-4 rounded px-3 py-1 text-black hover:bg-neutral-400 hover:text-neutral-50"
                 onClick={() => showAuthAssign(false)}
               >
                 X
