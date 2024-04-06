@@ -2,7 +2,8 @@
 
 import { CorbadoAuth, useCorbado } from '@corbado/react'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useClickAway } from 'react-use'
 
 import NavItem from './NavItem'
 
@@ -10,8 +11,12 @@ import NavItem from './NavItem'
 
 export default function LoginOrProfile() {
   const pathname = usePathname()
+  const modalRef = useRef<HTMLDivElement>(null)
   const { isAuthenticated, loading } = useCorbado()
   const [showAuth, showAuthAssign] = useState(false)
+  useClickAway(modalRef, () => {
+    showAuthAssign(false)
+  })
 
   useEffect(() => {
     showAuthAssign(false)
@@ -28,7 +33,7 @@ export default function LoginOrProfile() {
         <div className="relative">
           <button onClick={() => showAuthAssign(true)}>Login</button>
           {showAuth && (
-            <div className="absolute right-0">
+            <div className="absolute right-0" ref={modalRef}>
               <Login />
 
               <button
