@@ -1,11 +1,12 @@
-import { cx } from 'class-variance-authority'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { type ReactNode } from 'react'
+
+import LoginOrProfile from './LoginOrProfile'
+import NavItem from './NavItem'
 
 const Theme = dynamic(() => import('./Theme'), {
   ssr: false,
-  loading: () => <div className="w-6 h-6" />,
+  loading: () => <div className="h-6 w-6" />,
 })
 
 export default function Header() {
@@ -33,34 +34,11 @@ export default function Header() {
           >
             Play
           </NavItem>
-          <NavItem to="/profile">Profile</NavItem>
+          <LoginOrProfile />
 
           <Theme />
         </div>
       </nav>
     </header>
-  )
-}
-
-function NavItem({
-  children,
-  className,
-  to,
-}: {
-  children: ReactNode
-  className?: string
-  to: string
-}) {
-  return (
-    <div
-      className={cx(
-        'active:animate-wiggle hover:animate-wiggle focus:animate-wiggle',
-        className
-      )}
-    >
-      <Link href={to} role="menuitem">
-        {children}
-      </Link>
-    </div>
   )
 }

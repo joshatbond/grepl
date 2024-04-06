@@ -1,6 +1,5 @@
 import { createEnv } from '@t3-oss/env-nextjs'
-
-// import { z } from "zod";
+import { z } from 'zod'
 
 export const env = createEnv({
   /**
@@ -8,6 +7,7 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
+    CORBADO_API_SECRET: z.string(),
     // DATABASE_URL: z
     //   .string()
     //   .refine(
@@ -25,6 +25,7 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
+    NEXT_PUBLIC_CORBADO_PROJECT_ID: z.string(),
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
   },
 
@@ -33,6 +34,8 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
+    CORBADO_API_SECRET: process.env.CORBADO_API_SECRET,
+    NEXT_PUBLIC_CORBADO_PROJECT_ID: process.env.NEXT_PUBLIC_CORBADO_PROJECT_ID,
     // DATABASE_URL: process.env.DATABASE_URL,
     // NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
