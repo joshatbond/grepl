@@ -33,7 +33,10 @@ export default function LoginOrProfile() {
         <div className="relative">
           <button onClick={() => showAuthAssign(true)}>Login</button>
           {showAuth && (
-            <div className="absolute right-0" ref={modalRef}>
+            <div
+              className="login-form fixed inset-x-0 top-20 z-[1] px-4 md:absolute md:right-0 md:top-8"
+              ref={modalRef}
+            >
               <Login />
 
               <button
