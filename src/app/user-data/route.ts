@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
 
     if (!user.isAuthenticated()) throw Error
 
-    return NextResponse.json({ email: user.getEmail() }, { status: 200 })
+    return NextResponse.json({ username: user.getName() }, { status: 200 })
   } catch (e) {
     NextResponse.json({ status: 403 })
   }

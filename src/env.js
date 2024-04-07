@@ -8,15 +8,16 @@ export const env = createEnv({
    */
   server: {
     CORBADO_API_SECRET: z.string(),
-    // DATABASE_URL: z
-    //   .string()
-    //   .refine(
-    //     (str) => !str.includes("YOUR_MYSQL_URL_HERE"),
-    //     "You forgot to change the default URL"
-    //   ),
-    // NODE_ENV: z
-    //   .enum(["development", "test", "production"])
-    //   .default("development"),
+    DATABASE_URL: z
+      .string()
+      .refine(
+        str => !str.includes('YOUR_MYSQL_URL_HERE'),
+        'You forgot to change the default URL'
+      ),
+    DATABASE_AUTH_TOKEN: z.string(),
+    NODE_ENV: z
+      .enum(['development', 'test', 'production'])
+      .default('development'),
   },
 
   /**
@@ -34,10 +35,11 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
+    DATABASE_AUTH_TOKEN: process.env.DATABASE_AUTH_TOKEN,
     CORBADO_API_SECRET: process.env.CORBADO_API_SECRET,
     NEXT_PUBLIC_CORBADO_PROJECT_ID: process.env.NEXT_PUBLIC_CORBADO_PROJECT_ID,
-    // DATABASE_URL: process.env.DATABASE_URL,
-    // NODE_ENV: process.env.NODE_ENV,
+    DATABASE_URL: process.env.DATABASE_URL,
+    NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
