@@ -25,7 +25,7 @@ export default async function Profile() {
       <h1>Profile Page</h1>
 
       <p>User-ID: {user.getID()}</p>
-      <p>Email: {user.getEmail()}</p>
+      <p>Username: {user.getName()}</p>
 
       <Logout />
     </div>
