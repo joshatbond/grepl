@@ -257,13 +257,13 @@ html[data-theme='dark'] {
   }
 }
 
-.login-form > .cb-container {
+.login-form .cb-container {
   width: auto;
   max-width: auto;
 }
 
 @media screen and (max-width: 481px) {
-  .login-form > .cb-container {
+  .login-form .cb-container {
     width: auto;
   }
 }
