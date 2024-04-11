@@ -9,16 +9,6 @@ const themePlugin = createThemes({
     visible: colors.neutral[100],
     inverted: colors.neutral[900],
 
-    boardFront: 'hsl(205, 67%, 30%)',
-    boardSide: 'hsl(205, 67%, 40%)',
-    boardTop: 'hsl(205, 67%, 47%)',
-    front: 'hsl(0, 5%, 50%)',
-    frontActive: 'hsl(121, 39%, 47%)',
-    side: 'hsl(0, 5%, 70%)',
-    sideActive: 'hsl(145, 39%, 40%)',
-    top: 'hsl(0, 5%, 84%)',
-    topActive: 'hsl(145, 39%, 28%)',
-
     activate: colors.primary[500],
     adjLine: colors.green[400],
     btn: colors.neutral[600],
@@ -41,16 +31,6 @@ const themePlugin = createThemes({
     accent: colors.primary[400],
     visible: colors.neutral[900],
     inverted: colors.neutral[100],
-
-    boardFront: 'hsl(205, 67%, 30%)',
-    boardSide: 'hsl(205, 67%, 40%)',
-    boardTop: 'hsl(205, 67%, 47%)',
-    front: 'hsl(0, 5%, 50%)',
-    frontActive: 'hsl(121, 39%, 47%)',
-    side: 'hsl(0, 5%, 70%)',
-    sideActive: 'hsl(145, 39%, 40%)',
-    top: 'hsl(0, 5%, 84%)',
-    topActive: 'hsl(145, 39%, 28%)',
 
     activate: colors.primary[500],
     adjLine: colors.green[600],
@@ -78,15 +58,6 @@ type ThemeKeys =
   | 'accent'
   | 'visible'
   | 'inverted'
-  | 'boardFront'
-  | 'boardSide'
-  | 'boardTop'
-  | 'front'
-  | 'frontActive'
-  | 'side'
-  | 'sideActive'
-  | 'top'
-  | 'topActive'
   | 'activate'
   | 'adjLine'
   | 'btn'
