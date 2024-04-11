@@ -18,26 +18,28 @@ export default function Game() {
   }, 200)
 
   return (
-    <div className="mt-6 grid touch-none select-none grid-cols-[repeat(4,var(--cell-size))] grid-rows-[repeat(7,var(--cell-size))] place-content-center gap-4 text-visible [--cell-size:3rem] sm:mt-12 sm:grid-cols-[repeat(6,var(--cell-size))] sm:grid-rows-[repeat(6,var(--cell-size))]">
-      <StartButton />
+    <div className="mt-6 flex items-center justify-center">
+      <div className="grid touch-none select-none grid-cols-[repeat(4,var(--cell-size))] grid-rows-[repeat(7,var(--cell-size))] gap-4 text-visible [--cell-size:3rem] sm:mt-12 sm:grid-cols-[repeat(6,var(--cell-size))] sm:grid-rows-[repeat(6,var(--cell-size))]">
+        <StartButton />
 
-      <Timer />
+        <Timer />
 
-      <Score />
+        <Score />
 
-      <RotateButton dir="cw" />
+        <RotateButton dir="cw" />
 
-      <Cells />
+        <Cells />
 
-      <ClearButton />
+        <ClearButton />
 
-      <RotateButton dir="ccw" />
+        <RotateButton dir="ccw" />
 
-      <SubmitButton />
+        <SubmitButton />
 
-      <CurrentWord />
+        <CurrentWord />
 
-      {/* <div className="col-span-6 border text-center">Challenge</div> */}
+        {/* <div className="col-span-6 border text-center">Challenge</div> */}
+      </div>
     </div>
   )
 }
