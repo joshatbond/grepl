@@ -2,8 +2,8 @@ import TitleBoard from './_components/TitleBoard'
 
 export default function HomePage() {
   return (
-    <main className="wrapper place-content-center gap-y-12">
-      <div className="wrapper__full-bleed overflow-hidden">
+    <main className="">
+      <div className="">
         <TitleBoard />
       </div>
 

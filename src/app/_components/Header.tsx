@@ -18,39 +18,7 @@ const Theme = dynamic(() => import('./Theme'), {
 })
 
 export default async function Header() {
-  if (env.NODE_ENV === 'development') {
-    return (
-      <header>
-        <nav
-          aria-label="Grepl Game"
-          role="menubar"
-          className="relative flex items-baseline justify-between bg-accent px-4 py-4"
-        >
-          <Link href="/" role="menuitem">
-            <h1 className="nav__link--logo relative flex font-amatic text-[2.5rem] font-bold tracking-[0.25rem] text-primary">
-              <span className="nav__link--g">G</span>
-              <span className="nav__link--r">r</span>
-              <span className="nav__link--e">e</span>
-              <span className="nav__link--p">p</span>
-              <span className="nav__link--l">l</span>
-            </h1>
-          </Link>
-
-          <div className="flex items-center gap-4 text-primary">
-            <NavItem
-              to="/play"
-              className="rounded-lg bg-primary-500 px-4 py-1 text-neutral-100"
-            >
-              Play
-            </NavItem>
-            <NavItem to="/profile">Profile</NavItem>
-
-            <Theme />
-          </div>
-        </nav>
-      </header>
-    )
-  }
+  if (env.NODE_ENV === 'development') return <Navigation />
 
   const cookieStore = cookies()
   const session = cookieStore.get('cbo_short_session')
@@ -73,6 +41,10 @@ export default async function Header() {
     }
   } catch (e) {}
 
+  return <Navigation />
+}
+
+function Navigation() {
   return (
     <header>
       <nav
@@ -81,23 +53,37 @@ export default async function Header() {
         className="relative flex items-baseline justify-between bg-accent px-4 py-4"
       >
         <Link href="/" role="menuitem">
-          <h1 className="nav__link--logo relative flex font-amatic text-[2.5rem] font-bold tracking-[0.25rem] text-primary">
-            <span className="nav__link--g">G</span>
-            <span className="nav__link--r">r</span>
-            <span className="nav__link--e">e</span>
-            <span className="nav__link--p">p</span>
-            <span className="nav__link--l">l</span>
+          <h1 className="nav__link--logo group relative flex font-amatic text-[2.5rem] font-bold tracking-[0.25rem] text-visible">
+            <span className="group-hover:ad-0 group-hover:animate-bounce">
+              G
+            </span>
+            <span className="group-hover:ad-[0.1s] group-hover:animate-bounce">
+              r
+            </span>
+            <span className="group-hover:ad-[0.2s] group-hover:animate-bounce">
+              e
+            </span>
+            <span className="group-hover:ad-[0.3s] group-hover:animate-bounce">
+              p
+            </span>
+            <span className="group-hover:ad-[0.4s] group-hover:animate-bounce">
+              l
+            </span>
           </h1>
         </Link>
 
-        <div className="flex items-center gap-4 text-primary">
+        <div className="text-primary flex items-center gap-4">
           <NavItem
             to="/play"
-            className="rounded-lg bg-primary-500 px-4 py-1 text-neutral-100"
+            className="rounded-lg bg-activate px-4 py-1 text-neutral-100"
           >
             Play
           </NavItem>
-          <LoginOrProfile />
+          {env.NODE_ENV === 'production' ? (
+            <LoginOrProfile />
+          ) : (
+            <NavItem to="/profile">Profile</NavItem>
+          )}
 
           <Theme />
         </div>
