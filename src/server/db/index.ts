@@ -3,9 +3,6 @@ import { drizzle } from 'drizzle-orm/libsql'
 
 import { env } from '~/env.js'
 
-import { schema } from './schema'
-
 export const db = drizzle(
-  createClient({ url: env.DATABASE_URL, authToken: env.DATABASE_AUTH_TOKEN }),
-  { ...schema }
+  createClient({ url: env.DATABASE_URL, authToken: env.DATABASE_AUTH_TOKEN })
 )
