@@ -2,6 +2,7 @@ import { cx } from 'class-variance-authority'
 
 import useKeyPress from '../_hooks/useKeyPress'
 import gameStore from '../_store/store'
+import Button from './Button'
 import styles from './play.module.css'
 
 export default function RotateButton({ dir }: { dir: 'cw' | 'ccw' }) {
@@ -11,18 +12,14 @@ export default function RotateButton({ dir }: { dir: 'cw' | 'ccw' }) {
   )
 
   return (
-    <button
+    <Button
+      cn="row-span-2 cursor-pointer bg-btn text-visible"
       name={`rotate-${dir === 'cw' ? '' : 'counter-'}clockwise`}
-      type="button"
-      className={cx([
-        styles.btn,
-        'row-span-2 cursor-pointer bg-[--clr-btn] text-[--clr-text-primary]',
-      ])}
       onClick={() => rotate(dir)}
-      data-pressed={isPressed}
+      pressed={isPressed}
     >
       {dir === 'cw' ? <RotateCWIcon /> : <RotateCCWIcon />}
-    </button>
+    </Button>
   )
 }
 

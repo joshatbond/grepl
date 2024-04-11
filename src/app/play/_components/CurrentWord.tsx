@@ -25,12 +25,10 @@ export default function CurrentWord() {
 
   return (
     <h2
-      className={cx([
-        'col-span-6 flex select-none items-center justify-center rounded bg-[--clr-btn] uppercase',
-        styles.word,
-      ])}
+      className={`col-span-6 flex select-none items-center justify-center rounded bg-btn uppercase${
+        wasFound || wasIncorrect ? ' text-textWarn' : ''
+      }`}
       onAnimationEnd={updateAnimation}
-      data-warn={wasFound || wasIncorrect}
     >
       {!gameStarted
         ? ''

@@ -1,11 +1,10 @@
 'use client'
 
-import { cx } from 'class-variance-authority'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useRef } from 'react'
 
 import gameStore from '../_store/store'
-import styles from './play.module.css'
+import Button from './Button'
 
 export default function StartButton() {
   const router = useRouter()
@@ -28,14 +27,15 @@ export default function StartButton() {
     }
   }
   return (
-    <button
-      tabIndex={0}
-      className={cx([styles.btn, styles['btn--play']])}
+    <Button
+      cn={`bg-activate text-textActivate${
+        isGameStarted ? '' : ' animate-pulse'
+      }`}
       onClick={handleClick}
       ref={ref}
-      data-game-running={isGameStarted}
+      tabIndex={0}
     >
       {isGameStarted ? 'End' : 'Start'}
-    </button>
+    </Button>
   )
 }

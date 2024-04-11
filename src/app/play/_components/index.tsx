@@ -22,7 +22,7 @@ export default function Game() {
   }, 200)
 
   return (
-    <div className={styles.board}>
+    <div className="mt-12 grid touch-none select-none grid-cols-[repeat(6,var(--cell-size))] grid-rows-[repeat(6,var(--cell-size))] place-content-center gap-4 text-visible [--cell-size:3rem]">
       <Suspense fallback={<SuspenseFallback />}>
         <StartButton />
       </Suspense>

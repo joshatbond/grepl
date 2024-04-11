@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en" className="bg-default text-primary">
+    <html lang="en" className="bg-material text-visible">
       <head>
         <script dangerouslySetInnerHTML={{ __html: getTheme }} />
       </head>
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
             className={cx(
               ...fonts.tailwindFonts.map(font => font.variable),
               fonts.roboto.className,
-              'grid grid-rows-[auto,1fr]'
+              ''
             )}
           >
             <Header />

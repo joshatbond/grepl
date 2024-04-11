@@ -1,4 +1,4 @@
-.board {
+/* .board {
   --cell-size: 3rem;
   display: grid;
   grid-template-columns: repeat(6, var(--cell-size));
@@ -9,8 +9,8 @@
   color: var(--clr-text-primary);
   touch-action: none;
   user-select: none;
-}
-.btn {
+} */
+/* .btn {
   border-radius: 0.25rem;
   border: none;
   outline: none;
@@ -26,18 +26,18 @@
   box-shadow:
     inset 2px 2px 3px 0 hsla(0, 0%, 0%, 0.2),
     inset -2px -2px 3px 0 hsla(0, 0%, 100%, 0.5);
-}
-.btn[data-game-running='false'] {
+} */
+/* .btn[data-game-running='false'] {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+} */
 
-.btn--play {
+/* .btn--play {
   background-color: var(--clr-activate);
   color: var(--clr-text-activate);
 }
 .btn--play:is(:hover, :focus, :active) {
   --clr-activate: var(--clr-primary-600);
-}
+} */
 .cell {
 }
 .cell[data-selected='adjacent'] {
@@ -57,7 +57,7 @@
   --clr-tile: var(--clr-tile-selected-on);
   color: var(--clr-text-inverted);
 }
-.adj--r {
+/* .adj--r {
   top: 50%;
   right: -50%;
   transform: translateY(-50%);
@@ -73,15 +73,15 @@
 .adj--br {
   bottom: 0;
   transform: translate(50%, 50%) rotate(45deg);
-}
-.word {
+} */
+/* .word {
 }
 .word[data-warn='true'] {
   color: var(--clr-text-warn);
-}
+} */
 
-@keyframes pulse {
+/* @keyframes pulse {
   50% {
     opacity: 0.5;
   }
-}
+} */
