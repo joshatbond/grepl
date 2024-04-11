@@ -2,7 +2,6 @@ import { eq } from 'drizzle-orm'
 import dynamic from 'next/dynamic'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 
 import { env } from '~/env'
 import getNodeSDK from '~/lib/getNodeSdk'
@@ -11,6 +10,7 @@ import { users } from '~/server/db/schema/users'
 
 import LoginOrProfile from './LoginOrProfile'
 import NavItem from './NavItem'
+import PlayPageLink from './PlayPageLink'
 
 const Theme = dynamic(() => import('./Theme'), {
   ssr: false,
@@ -55,31 +55,26 @@ function Navigation() {
       >
         <Link href="/" role="menuitem">
           <h1 className="nav__link--logo group relative flex font-amatic text-[2.5rem] font-bold tracking-[0.25rem] text-visible">
-            <span className="group-hover:ad-0 group-hover:animate-bounce">
+            <span className="group-hover:animate-bounce group-hover:ad-0">
               G
             </span>
-            <span className="group-hover:ad-[0.1s] group-hover:animate-bounce">
+            <span className="group-hover:animate-bounce group-hover:ad-[0.1s]">
               r
             </span>
-            <span className="group-hover:ad-[0.2s] group-hover:animate-bounce">
+            <span className="group-hover:animate-bounce group-hover:ad-[0.2s]">
               e
             </span>
-            <span className="group-hover:ad-[0.3s] group-hover:animate-bounce">
+            <span className="group-hover:animate-bounce group-hover:ad-[0.3s]">
               p
             </span>
-            <span className="group-hover:ad-[0.4s] group-hover:animate-bounce">
+            <span className="group-hover:animate-bounce group-hover:ad-[0.4s]">
               l
             </span>
           </h1>
         </Link>
 
         <div className="text-primary flex items-center gap-4">
-          <NavItem
-            to="/play"
-            className="rounded-lg bg-activate px-4 py-1 text-neutral-100"
-          >
-            Play
-          </NavItem>
+          <PlayPageLink />
           {env.NODE_ENV === 'production' ? (
             <LoginOrProfile />
           ) : (
