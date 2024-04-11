@@ -1,7 +1,17 @@
+@media only screen and (min-width: 400px) {
+  .board {
+    --cube-size: 3em !important;
+    --grid-size: 20em !important;
+    --board-top: 14.9em !important;
+    --board-side: 2em !important;
+    --board-offset: 1em !important;
+  }
+}
+
 .board {
-  --cube-size: 3em;
-  --grid-size: 20em;
-  --board-top: 14.9em;
+  --cube-size: 2em;
+  --grid-size: 16em;
+  --board-top: 10.9em;
   --board-side: 2em;
   --board-offset: 1em;
   --board-offset-inverted: calc(-1 * var(--board-offset));
