@@ -30,6 +30,9 @@
   transform: perspective(500px) rotateX(30deg) rotateZ(-10deg);
   transform-style: preserve-3d;
 }
+html[data-theme='dark'] .board {
+  color: hsl(0, 0%, 7%);
+}
 .base,
 .base::before,
 .base::after {
