@@ -46,7 +46,7 @@ export default function SubmitButton() {
   return (
     <Button
       name="submit word"
-      cn="row-span-2 cursor-pointer bg-btn text-visible"
+      cn="row-start-7 col-start-4 cursor-pointer bg-btn text-visible sm:row-span-2 sm:row-start-4 sm:col-start-6"
       onClick={handleSubmit}
       pressed={isPressed}
       type="submit"
