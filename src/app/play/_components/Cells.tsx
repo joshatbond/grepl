@@ -81,16 +81,13 @@ function Cell({
   const gameStarted = gameStore().gameStarted
   const currentWord = gameStore().currentWord
   const { addLetterToWord, removeLetterFromWord } = gameStore()
+  const adjLineStyles = useRef(getAdjStyles(currentWord, position))
+  const selectedState = useRef(
+    currentWord.includes(position) ? 'selected' : isAdjacent ? 'adjacent' : ''
+  )
 
   const isWithinCell = useIntersecting(ref)
   const wasWithinCell = usePrevious(isWithinCell)
-
-  const adjLineStyles = getAdjStyles(currentWord, position)
-  const selectedState = currentWord.includes(position)
-    ? 'selected'
-    : isAdjacent
-      ? 'adjacent'
-      : ''
 
   const handleClick = useCallback(() => {
     if (!gameStarted || !isWithinCell || isWithinCell === wasWithinCell) return
@@ -113,28 +110,57 @@ function Cell({
     handleClick()
   }, [handleClick, isWithinCell, letter, wasWithinCell])
 
+  useEffect(() => {
+    adjLineStyles.current = getAdjStyles(currentWord, position)
+    selectedState.current =
+      currentWord.length === 0
+        ? ''
+        : currentWord.includes(position)
+          ? 'selected'
+          : isAdjacent
+            ? 'adjacent'
+            : ''
+  }, [currentWord, isAdjacent, position])
+
   return (
     <div className="relative place-items-center">
-      {adjLineStyles.map((style, i) => (
+      {adjLineStyles.current.map((style, i) => (
         <div
           key={i}
           className={cx(
-            'absolute h-[5px] w-full bg-[--clr-adj-line]',
-            styles[`adj--${style}`]
+            'bg-adjLine absolute h-[5px] w-full',
+            style === 'r'
+              ? '-right-1/2 top-1/2 -translate-y-1/2'
+              : style === 'bl'
+                ? 'bottom-0 -translate-x-1/2 translate-y-1/2 -rotate-45'
+                : style === 'b'
+                  ? 'bottom-0 rotate-90'
+                  : 'bottom-0 translate-x-1/2 translate-y-1/2 rotate-45'
           )}
         />
       ))}
 
       <div
         className={cx(
-          'absolute inset-0 rounded-lg bg-gradient-to-b  from-[--clr-from] to-[--clr-to]',
-          styles.cell
+          'absolute inset-0 rounded-lg bg-gradient-to-b',
+          selectedState.current === 'selected'
+            ? 'from-fromSelected to-toSelected'
+            : selectedState.current === 'adjacent'
+              ? 'from-fromAdj to-toAdj'
+              : 'from-from to-to'
         )}
         ref={ref}
         data-selected={selectedState}
       >
         <button
-          className="absolute left-[2.5%] top-[2.5%] h-[95%] w-[95%] cursor-pointer rounded-[50%] border-none bg-[--clr-tile] text-xl font-bold text-[--clr-text-primary] outline-none"
+          className={cx(
+            'absolute left-[2.5%] top-[2.5%] h-[95%] w-[95%] cursor-pointer rounded-[50%] border-none text-xl font-bold text-visible outline-none',
+            selectedState.current === 'selected'
+              ? 'bg-tileSelected hover:bg-tileOnSelected focus:bg-tileOnSelected active:bg-tileOnSelected hover:text-inverted focus:text-inverted active:text-inverted'
+              : selectedState.current === 'adjacent'
+                ? 'bg-tileAdj hover:bg-tileOnAdj focus:bg-tileOnAdj active:bg-tileOnAdj'
+                : 'bg-tile'
+          )}
           onClick={handleClick}
         >
           {letter}

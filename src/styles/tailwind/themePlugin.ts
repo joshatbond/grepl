@@ -22,6 +22,8 @@ const themePlugin = createThemes({
     tile: colors.primary[800],
     tileAdj: colors.slate[600],
     tileSelected: colors.primary[500],
+    tileOnAdj: colors.slate[600],
+    tileOnSelected: colors.primary[400],
     to: colors.primary[900],
     toAdj: colors.slate[800],
     toSelected: colors.primary[600],
@@ -45,6 +47,8 @@ const themePlugin = createThemes({
     tile: colors.primary[200],
     tileAdj: colors.slate[300],
     tileSelected: colors.primary[300],
+    tileOnAdj: colors.slate[400],
+    tileOnSelected: colors.primary[400],
     to: colors.primary[300],
     toAdj: colors.slate[400],
     toSelected: colors.primary[400],
@@ -71,6 +75,8 @@ type ThemeKeys =
   | 'tile'
   | 'tileAdj'
   | 'tileSelected'
+  | 'tileOnAdj'
+  | 'tileOnSelected'
   | 'to'
   | 'toAdj'
   | 'toSelected'

@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <main className="wrapper scrollbar gap-12">
+    <main className="scrollbar gap-12">
       <Game />
       <WordList />
     </main>

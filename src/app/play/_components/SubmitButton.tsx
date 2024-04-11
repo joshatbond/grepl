@@ -6,9 +6,11 @@ import { isValidWord } from '~/server/data-layer/submitWord'
 import useKeyPress from '../_hooks/useKeyPress'
 import gameStore from '../_store/store'
 import { tilesToWord } from '../_store/utils'
+import Button from './Button'
 import styles from './play.module.css'
 
 export default function SubmitButton() {
+  const isGameStarted = gameStore().gameStarted
   const currentWord = gameStore().currentWord
   const list = gameStore().wordList
   const tiles = gameStore().tiles
@@ -29,6 +31,7 @@ export default function SubmitButton() {
   })
 
   const handleSubmit = () => {
+    if (!isGameStarted) return
     const word = tilesToWord(currentWord, tiles)
     const alreadyUsed = list.includes(word)
 
@@ -43,18 +46,15 @@ export default function SubmitButton() {
   }
 
   return (
-    <button
+    <Button
       name="submit word"
-      className={cx([
-        styles.btn,
-        'row-span-2 cursor-pointer bg-[--clr-btn] text-[--clr-text-primary]',
-      ])}
+      cn="row-span-2 cursor-pointer bg-btn text-visible"
       onClick={handleSubmit}
+      pressed={isPressed}
       type="submit"
-      data-pressed={isPressed}
     >
       {isPending ? <LoadingIcon /> : <SubmitIcon />}
-    </button>
+    </Button>
   )
 }
 
