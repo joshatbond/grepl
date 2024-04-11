@@ -22,24 +22,25 @@ export default async function Header() {
 
   const cookieStore = cookies()
   const session = cookieStore.get('cbo_short_session')
-  if (!session) return redirect('/#login-init')
+  // if (!session) return redirect('/#login-init')
+  if (session) {
+    const sdk = getNodeSDK()
 
-  const sdk = getNodeSDK()
+    try {
+      const corbado_id = (
+        await sdk.sessions().getCurrentUser(session.value)
+      ).getID()
+      const db_user = await db
+        .select()
+        .from(users)
+        .where(eq(users.corbadoId, corbado_id))
+        .get()
 
-  try {
-    const corbado_id = (
-      await sdk.sessions().getCurrentUser(session.value)
-    ).getID()
-    const db_user = await db
-      .select()
-      .from(users)
-      .where(eq(users.corbadoId, corbado_id))
-      .get()
-
-    if (!db_user) {
-      await db.insert(users).values({ corbadoId: corbado_id })
-    }
-  } catch (e) {}
+      if (!db_user) {
+        await db.insert(users).values({ corbadoId: corbado_id })
+      }
+    } catch (e) {}
+  }
 
   return <Navigation />
 }
