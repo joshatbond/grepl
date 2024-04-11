@@ -1,9 +1,6 @@
-import { cx } from 'class-variance-authority'
-
 import useKeyPress from '../_hooks/useKeyPress'
 import gameStore from '../_store/store'
 import Button from './Button'
-import styles from './play.module.css'
 
 export default function RotateButton({ dir }: { dir: 'cw' | 'ccw' }) {
   const rotate = gameStore().rotateTiles

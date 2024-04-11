@@ -1,8 +1,5 @@
 'use client'
 
-import { cx } from 'class-variance-authority'
-import { Suspense } from 'react'
-
 import { useMousePosition } from '../_hooks/useMousePosition'
 import gameStore from '../_store/store'
 import Cells from './Cells'
@@ -13,7 +10,6 @@ import Score from './Score'
 import StartButton from './StartButton'
 import SubmitButton from './SubmitButton'
 import Timer from './Timer'
-import styles from './play.module.css'
 
 export default function Game() {
   const { updatePointer } = gameStore()
@@ -23,9 +19,7 @@ export default function Game() {
 
   return (
     <div className="mt-12 grid touch-none select-none grid-cols-[repeat(6,var(--cell-size))] grid-rows-[repeat(6,var(--cell-size))] place-content-center gap-4 text-visible [--cell-size:3rem]">
-      <Suspense fallback={<SuspenseFallback />}>
-        <StartButton />
-      </Suspense>
+      <StartButton />
 
       <Timer />
 
@@ -46,8 +40,4 @@ export default function Game() {
       {/* <div className="col-span-6 border text-center">Challenge</div> */}
     </div>
   )
-}
-
-function SuspenseFallback() {
-  return <div className={cx([styles.btn, styles['btn--play']])}>Start</div>
 }
