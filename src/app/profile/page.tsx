@@ -5,6 +5,7 @@ import { env } from '~/env'
 import getNodeSDK from '~/lib/getNodeSdk'
 
 import Logout from '../_components/Logout'
+import ThemeSelect from './_components/ThemeSelect'
 
 export default async function Profile() {
   const cookieStore = cookies()
@@ -31,12 +32,10 @@ export default async function Profile() {
         </section>
 
         <section>
-          <div className="flex justify-between">
+          <div className="flex items-baseline justify-between">
             <span>Theme</span>
-            <select className="">
-              <option>Light</option>
-              <option>Dark</option>
-            </select>
+
+            <ThemeSelect />
           </div>
         </section>
       </main>

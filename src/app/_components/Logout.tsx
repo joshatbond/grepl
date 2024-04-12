@@ -13,8 +13,8 @@ export default function Logout() {
   }
 
   return (
-    <button onClick={onLogout} className="rounded bg-red-600 px-3 py-1 text-sm">
-      Logout
+    <button onClick={onLogout} className="rounded bg-clear px-3 py-1 text-sm">
+      Sign Out
     </button>
   )
 }
