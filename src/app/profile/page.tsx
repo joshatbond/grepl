@@ -60,12 +60,8 @@ export default async function Profile() {
       </section>
 
       <section>
-        <p>
-          User-ID: <b>SOME ID GOES HERE</b>
-        </p>
-        <p>
-          Username: <b>josh@cursedtale.com</b>
-        </p>
+        <p>User-ID: {user.getID()}</p>
+        <p>Username: {user.getEmail()}</p>
       </section>
 
       <section>
