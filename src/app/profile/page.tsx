@@ -7,39 +7,14 @@ import getNodeSDK from '~/lib/getNodeSdk'
 import Logout from '../_components/Logout'
 import ThemeSelect from './_components/ThemeSelect'
 
-export default async function Profile() {
+export default async function Page() {
   const cookieStore = cookies()
   const session = cookieStore.get('cbo_short_session')
 
   if (!session) {
     if (env.NODE_ENV !== 'development') return redirect('/')
 
-    return (
-      <main className="space-y-8 p-4">
-        <section className="mb-4 flex justify-between">
-          <h1 className="text-xl">Profile Page</h1>
-
-          <Logout />
-        </section>
-
-        <section>
-          <p>
-            User-ID: <b>SOME ID GOES HERE</b>
-          </p>
-          <p>
-            Username: <b>josh@cursedtale.com</b>
-          </p>
-        </section>
-
-        <section>
-          <div className="flex items-baseline justify-between">
-            <span>Theme</span>
-
-            <ThemeSelect />
-          </div>
-        </section>
-      </main>
-    )
+    return <Profile userId="SOME ID GOES HERE" username="josh@cursedtale.com" />
   }
   const sdk = getNodeSDK()
 
@@ -51,8 +26,12 @@ export default async function Profile() {
     return redirect('/')
   }
 
+  return <Profile userId={user.getID()} username={user.getEmail()} />
+}
+
+function Profile({ userId, username }: { userId: string; username: string }) {
   return (
-    <main className="space-y-8 p-4">
+    <main className="mx-auto max-w-md space-y-8 p-4">
       <section className="mb-4 flex justify-between">
         <h1 className="text-xl">Profile Page</h1>
 
@@ -60,8 +39,8 @@ export default async function Profile() {
       </section>
 
       <section>
-        <p>User-ID: {user.getID()}</p>
-        <p>Username: {user.getEmail()}</p>
+        <p>User-ID: {userId}</p>
+        <p>Username: {username}</p>
       </section>
 
       <section>
