@@ -33,14 +33,22 @@ function Profile({ userId, username }: { userId: string; username: string }) {
   return (
     <main className="mx-auto max-w-xl space-y-8 p-4">
       <section className="mb-4 flex justify-between">
-        <h1 className="text-xl">Profile Page</h1>
+        <h1 className="text-3xl">Profile Page</h1>
 
         <Logout />
       </section>
 
       <section>
-        <p>User-ID: {userId}</p>
-        <p>Username: {username}</p>
+        <h2 className="text-xl">User Info</h2>
+        <hr className="border-selectPlaceholder mb-2" />
+        <div className="flex justify-between">
+          <span>Id</span>
+          <span>{userId}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Email</span>
+          <span>{username}</span>
+        </div>
       </section>
 
       <section>
