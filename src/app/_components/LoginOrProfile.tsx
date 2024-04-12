@@ -7,8 +7,6 @@ import { useClickAway } from 'react-use'
 
 import NavItem from './NavItem'
 
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 export default function LoginOrProfile() {
   const pathname = usePathname()
   const modalRef = useRef<HTMLDivElement>(null)

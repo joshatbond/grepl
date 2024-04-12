@@ -44,7 +44,7 @@ export default function Timer() {
   }, [duration, endGame, isGameStarted, timeLeft])
 
   return (
-    <div className="col-span-4 place-self-center">
+    <div className="col-span-2 place-self-center sm:col-span-4">
       <p>Time Left</p>
       <p
         className={cx(

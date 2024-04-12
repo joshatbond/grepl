@@ -1,7 +1,22 @@
+@media only screen and (min-width: 400px) {
+  .board {
+    --cube-size: 3em !important;
+    --grid-size: 20em !important;
+    --board-top: 14.9em !important;
+  }
+}
+@media only screen and (min-width: 330px) and (max-width: 399px) {
+  .board {
+    --cube-size: 2em !important;
+    --grid-size: 16em !important;
+    --board-top: 10.9em !important;
+  }
+}
+
 .board {
-  --cube-size: 3em;
-  --grid-size: 20em;
-  --board-top: 14.9em;
+  --cube-size: 1.4em;
+  --grid-size: 13em;
+  --board-top: 8.4em;
   --board-side: 2em;
   --board-offset: 1em;
   --board-offset-inverted: calc(-1 * var(--board-offset));
@@ -19,6 +34,9 @@
   padding: 3rem;
   transform: perspective(500px) rotateX(30deg) rotateZ(-10deg);
   transform-style: preserve-3d;
+}
+html[data-theme='dark'] .board {
+  color: hsl(0, 0%, 7%);
 }
 .base,
 .base::before,

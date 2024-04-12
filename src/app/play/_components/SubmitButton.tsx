@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query'
-import { cx } from 'class-variance-authority'
 
 import { isValidWord } from '~/server/data-layer/submitWord'
 
@@ -7,7 +6,6 @@ import useKeyPress from '../_hooks/useKeyPress'
 import gameStore from '../_store/store'
 import { tilesToWord } from '../_store/utils'
 import Button from './Button'
-import styles from './play.module.css'
 
 export default function SubmitButton() {
   const isGameStarted = gameStore().gameStarted
@@ -48,7 +46,7 @@ export default function SubmitButton() {
   return (
     <Button
       name="submit word"
-      cn="row-span-2 cursor-pointer bg-btn text-visible"
+      cn="row-start-7 col-start-4 cursor-pointer bg-btn text-visible sm:row-span-2 sm:row-start-4 sm:col-start-6"
       onClick={handleSubmit}
       pressed={isPressed}
       type="submit"

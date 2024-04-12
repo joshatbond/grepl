@@ -1,7 +1,7 @@
 'use client'
 
-import { cx } from 'class-variance-authority'
-import { Suspense } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
 
 import { useMousePosition } from '../_hooks/useMousePosition'
 import gameStore from '../_store/store'
@@ -13,41 +13,56 @@ import Score from './Score'
 import StartButton from './StartButton'
 import SubmitButton from './SubmitButton'
 import Timer from './Timer'
-import styles from './play.module.css'
 
 export default function Game() {
   const { updatePointer } = gameStore()
+  const tiles = gameStore().tiles
+  const gameStarted = gameStore().gameStarted
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const router = useRouter()
+
   useMousePosition(({ pageX, pageY }) => {
     updatePointer({ x: pageX, y: pageY })
   }, 200)
 
+  useEffect(() => {
+    const currentParams = new URLSearchParams(
+      Array.from(searchParams.entries())
+    )
+    if (gameStarted) {
+      currentParams.set('game', tiles.join(''))
+    } else {
+      currentParams.delete('game')
+    }
+
+    const query = currentParams.toString()
+    router.push(`${pathname}${query ? `?${query}` : ''}`)
+  }, [gameStarted, pathname, router, searchParams, tiles])
+
   return (
-    <div className="mt-12 grid touch-none select-none grid-cols-[repeat(6,var(--cell-size))] grid-rows-[repeat(6,var(--cell-size))] place-content-center gap-4 text-visible [--cell-size:3rem]">
-      <Suspense fallback={<SuspenseFallback />}>
+    <div className="mt-6 flex items-center justify-center">
+      <div className="grid touch-none select-none grid-cols-[repeat(4,var(--cell-size))] grid-rows-[repeat(7,var(--cell-size))] gap-4 text-visible [--cell-size:3rem] sm:mt-12 sm:grid-cols-[repeat(6,var(--cell-size))] sm:grid-rows-[repeat(6,var(--cell-size))]">
         <StartButton />
-      </Suspense>
 
-      <Timer />
+        <Timer />
 
-      <Score />
+        <Score />
 
-      <RotateButton dir="cw" />
+        <RotateButton dir="cw" />
 
-      <Cells />
+        <Cells />
 
-      <ClearButton />
+        <ClearButton />
 
-      <RotateButton dir="ccw" />
+        <RotateButton dir="ccw" />
 
-      <SubmitButton />
+        <SubmitButton />
 
-      <CurrentWord />
+        <CurrentWord />
 
-      {/* <div className="col-span-6 border text-center">Challenge</div> */}
+        {/* <div className="col-span-6 border text-center">Challenge</div> */}
+      </div>
     </div>
   )
-}
-
-function SuspenseFallback() {
-  return <div className={cx([styles.btn, styles['btn--play']])}>Start</div>
 }

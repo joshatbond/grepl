@@ -4,7 +4,6 @@ import { usePrevious } from 'react-use'
 
 import { useIntersecting } from '../_hooks/useIntersecting'
 import gameStore, { findPath, getAdj } from '../_store/store'
-import styles from './play.module.css'
 
 export default function Cells() {
   const currentWord = gameStore().currentWord

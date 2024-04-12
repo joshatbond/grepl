@@ -1,9 +1,6 @@
-import { cx } from 'class-variance-authority'
-
 import useKeyPress from '../_hooks/useKeyPress'
 import gameStore from '../_store/store'
 import Button from './Button'
-import styles from './play.module.css'
 
 export default function RotateButton({ dir }: { dir: 'cw' | 'ccw' }) {
   const rotate = gameStore().rotateTiles
@@ -13,7 +10,11 @@ export default function RotateButton({ dir }: { dir: 'cw' | 'ccw' }) {
 
   return (
     <Button
-      cn="row-span-2 cursor-pointer bg-btn text-visible"
+      cn={`row-start-7 ${
+        dir === 'cw'
+          ? 'col-start-2 sm:row-start-2 sm:col-start-1'
+          : 'col-start-3 sm:row-start-4 sm:col-start-1'
+      } cursor-pointer bg-btn text-visible sm:row-span-2`}
       name={`rotate-${dir === 'cw' ? '' : 'counter-'}clockwise`}
       onClick={() => rotate(dir)}
       pressed={isPressed}

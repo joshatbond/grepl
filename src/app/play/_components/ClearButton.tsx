@@ -1,9 +1,6 @@
-import { cx } from 'class-variance-authority'
-
 import useKeyPress from '../_hooks/useKeyPress'
 import gameStore from '../_store/store'
 import Button from './Button'
-import styles from './play.module.css'
 
 export default function ClearButton() {
   const clearWord = gameStore().clearWord
@@ -12,7 +9,7 @@ export default function ClearButton() {
   return (
     <Button
       name="clear word"
-      cn="row-span-2 cursor-pointer bg-clear text-visible"
+      cn="row-start-7 col-start-1 cursor-pointer bg-clear text-visible sm:row-span-2 sm:row-start-2 sm:col-start-6"
       onClick={clearWord}
       pressed={isPressed}
     >
