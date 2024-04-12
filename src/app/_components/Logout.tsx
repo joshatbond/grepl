@@ -12,5 +12,9 @@ export default function Logout() {
     router.push('/')
   }
 
-  return <button onClick={onLogout}>Logout</button>
+  return (
+    <button onClick={onLogout} className="rounded bg-clear px-3 py-1 text-sm">
+      Sign Out
+    </button>
+  )
 }

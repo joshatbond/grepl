@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
 
+import { ProfilePageLink } from './Links'
 import NavItem from './NavItem'
 
 export default function LoginOrProfile() {
@@ -26,7 +27,7 @@ export default function LoginOrProfile() {
   return (
     <>
       {isAuthenticated ? (
-        <NavItem to="/profile">Profile</NavItem>
+        <ProfilePageLink />
       ) : (
         <div className="relative">
           <button onClick={() => showAuthAssign(true)}>Login</button>

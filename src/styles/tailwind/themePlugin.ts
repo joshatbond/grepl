@@ -27,6 +27,11 @@ const themePlugin = createThemes({
     to: colors.primary[900],
     toAdj: colors.slate[800],
     toSelected: colors.primary[600],
+
+    selectBg: colors.neutral[900],
+    selectBorder: colors.neutral[800],
+    selectFocus: colors.primary[700],
+    selectPlaceholder: colors.neutral[400],
   }),
   light: themeFactory({
     material: colors.primary[300],
@@ -52,6 +57,11 @@ const themePlugin = createThemes({
     to: colors.primary[300],
     toAdj: colors.slate[400],
     toSelected: colors.primary[400],
+
+    selectBg: colors.white,
+    selectBorder: colors.neutral[200],
+    selectFocus: colors.primary[300],
+    selectPlaceholder: colors.neutral[500],
   }),
 })
 
@@ -80,6 +90,10 @@ type ThemeKeys =
   | 'to'
   | 'toAdj'
   | 'toSelected'
+  | 'selectBg'
+  | 'selectBorder'
+  | 'selectFocus'
+  | 'selectPlaceholder'
 
 function themeFactory(config: Record<ThemeKeys, string>) {
   return config

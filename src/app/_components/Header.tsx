@@ -8,14 +8,9 @@ import getNodeSDK from '~/lib/getNodeSdk'
 import { db } from '~/server/db'
 import { users } from '~/server/db/schema/users'
 
+import { PlayPageLink, ProfilePageLink } from './Links'
 import LoginOrProfile from './LoginOrProfile'
 import NavItem from './NavItem'
-import PlayPageLink from './PlayPageLink'
-
-const Theme = dynamic(() => import('./Theme'), {
-  ssr: false,
-  loading: () => <div className="h-6 w-6" />,
-})
 
 export default async function Header() {
   if (env.NODE_ENV === 'development') return <Navigation />
@@ -78,10 +73,8 @@ function Navigation() {
           {env.NODE_ENV === 'production' ? (
             <LoginOrProfile />
           ) : (
-            <NavItem to="/profile">Profile</NavItem>
+            <ProfilePageLink />
           )}
-
-          <Theme />
         </div>
       </nav>
     </header>
