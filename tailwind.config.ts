@@ -1,14 +1,25 @@
 import { type Config } from 'tailwindcss'
+import tailwindAnimate from 'tailwindcss-animate'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 
 import animationDelayPlugin from './src/styles/tailwind/animationDelay'
 import themePlugin from './src/styles/tailwind/themePlugin'
 
-export default {
+const config = {
   content: ['./src/**/*.tsx'],
+  prefix: '',
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
       animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
         bounce: 'bounce 1s ease',
         pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         wave: 'wave 3s ease-in-out infinite',
@@ -28,6 +39,14 @@ export default {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },
       keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
         bounce: {
           '0%, 65%': { transform: 'scale(1, 1) translateY(0)' },
           '10%': { transform: 'scale(1.1, 0.9) translateY(0)' },
@@ -46,11 +65,9 @@ export default {
           '50%': { transform: 'rotate(5deg)' },
         },
       },
-      rotate: {
-        '10': '10deg',
-        '30': '30deg',
-      },
     },
   },
-  plugins: [animationDelayPlugin, themePlugin],
+  plugins: [animationDelayPlugin, themePlugin, tailwindAnimate],
 } satisfies Config
+
+export default config
