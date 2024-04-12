@@ -7,8 +7,6 @@ import gameStore from '../_store/store'
 import Button from './Button'
 
 export default function StartButton() {
-  const router = useRouter()
-  const pathname = usePathname()
   const searchParams = useSearchParams()
   const ref = useRef<HTMLButtonElement>(null)
   const isGameStarted = gameStore().gameStarted
@@ -23,7 +21,6 @@ export default function StartButton() {
       endGame()
     } else {
       startGame(query)
-      router.replace(pathname)
     }
   }
   return (

@@ -1,5 +1,8 @@
 'use client'
 
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
+
 import { useMousePosition } from '../_hooks/useMousePosition'
 import gameStore from '../_store/store'
 import Cells from './Cells'
@@ -13,9 +16,29 @@ import Timer from './Timer'
 
 export default function Game() {
   const { updatePointer } = gameStore()
+  const tiles = gameStore().tiles
+  const gameStarted = gameStore().gameStarted
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const router = useRouter()
+
   useMousePosition(({ pageX, pageY }) => {
     updatePointer({ x: pageX, y: pageY })
   }, 200)
+
+  useEffect(() => {
+    const currentParams = new URLSearchParams(
+      Array.from(searchParams.entries())
+    )
+    if (gameStarted) {
+      currentParams.set('game', tiles.join(''))
+    } else {
+      currentParams.delete('game')
+    }
+
+    const query = currentParams.toString()
+    router.push(`${pathname}${query ? `?${query}` : ''}`)
+  }, [gameStarted, pathname, router, searchParams, tiles])
 
   return (
     <div className="mt-6 flex items-center justify-center">
