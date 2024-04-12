@@ -31,7 +31,7 @@ export default async function Page() {
 
 function Profile({ userId, username }: { userId: string; username: string }) {
   return (
-    <main className="mx-auto max-w-md space-y-8 p-4">
+    <main className="mx-auto max-w-xl space-y-8 p-4">
       <section className="mb-4 flex justify-between">
         <h1 className="text-xl">Profile Page</h1>
 

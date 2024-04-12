@@ -42,39 +42,41 @@ export default async function Header() {
 
 function Navigation() {
   return (
-    <header>
+    <header className="bg-accent p-4">
       <nav
         aria-label="Grepl Game"
         role="menubar"
-        className="relative flex items-baseline justify-between bg-accent px-4 py-4"
+        className="relative mx-auto max-w-lg"
       >
-        <Link href="/" role="menuitem">
-          <h1 className="nav__link--logo group relative flex font-amatic text-[2.5rem] font-bold tracking-[0.25rem] text-visible">
-            <span className="group-hover:animate-bounce group-hover:ad-0">
-              G
-            </span>
-            <span className="group-hover:animate-bounce group-hover:ad-[0.1s]">
-              r
-            </span>
-            <span className="group-hover:animate-bounce group-hover:ad-[0.2s]">
-              e
-            </span>
-            <span className="group-hover:animate-bounce group-hover:ad-[0.3s]">
-              p
-            </span>
-            <span className="group-hover:animate-bounce group-hover:ad-[0.4s]">
-              l
-            </span>
-          </h1>
-        </Link>
+        <div className="flex items-baseline justify-between">
+          <Link href="/" role="menuitem">
+            <h1 className="nav__link--logo group relative flex font-amatic text-[2.5rem] font-bold tracking-[0.25rem] text-visible">
+              <span className="group-hover:animate-bounce group-hover:ad-0">
+                G
+              </span>
+              <span className="group-hover:animate-bounce group-hover:ad-[0.1s]">
+                r
+              </span>
+              <span className="group-hover:animate-bounce group-hover:ad-[0.2s]">
+                e
+              </span>
+              <span className="group-hover:animate-bounce group-hover:ad-[0.3s]">
+                p
+              </span>
+              <span className="group-hover:animate-bounce group-hover:ad-[0.4s]">
+                l
+              </span>
+            </h1>
+          </Link>
 
-        <div className="text-primary flex items-center gap-4">
-          <PlayPageLink />
-          {env.NODE_ENV === 'production' ? (
-            <LoginOrProfile />
-          ) : (
-            <ProfilePageLink />
-          )}
+          <div className="text-primary flex items-center gap-4">
+            <PlayPageLink />
+            {env.NODE_ENV === 'production' ? (
+              <LoginOrProfile />
+            ) : (
+              <ProfilePageLink />
+            )}
+          </div>
         </div>
       </nav>
     </header>
