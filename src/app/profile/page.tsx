@@ -52,13 +52,29 @@ export default async function Profile() {
   }
 
   return (
-    <div>
-      <h1>Profile Page</h1>
+    <main className="space-y-8 p-4">
+      <section className="mb-4 flex justify-between">
+        <h1 className="text-xl">Profile Page</h1>
 
-      <p>User-ID: {user.getID()}</p>
-      <p>Username: {user.getEmail()}</p>
+        <Logout />
+      </section>
 
-      <Logout />
-    </div>
+      <section>
+        <p>
+          User-ID: <b>SOME ID GOES HERE</b>
+        </p>
+        <p>
+          Username: <b>josh@cursedtale.com</b>
+        </p>
+      </section>
+
+      <section>
+        <div className="flex items-baseline justify-between">
+          <span>Theme</span>
+
+          <ThemeSelect />
+        </div>
+      </section>
+    </main>
   )
 }
