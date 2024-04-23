@@ -14,6 +14,10 @@ export function getNodeSDK() {
   return sdk
 }
 
+/**
+ * Returns the corbado userId if the user is authenticated
+ * If the corbado userId is not found in the database, it will be created
+ */
 export async function validateAuth() {
   const session = getUserSession()
   if (!session) return false
@@ -42,7 +46,7 @@ export async function validateAuth() {
 /**
  * Get the current user from the session or throw an error if not authenticated
  */
-export async function getUser() {
+export async function getCorbadoUser() {
   const userId = await validateAuth()
   const session = getUserSession()
 
@@ -54,6 +58,9 @@ export async function getUser() {
   return user
 }
 
+/**
+ * Get the current user from the session cookie
+ */
 function getUserSession() {
   const cookieStore = cookies()
   return cookieStore.get('cbo_short_session')

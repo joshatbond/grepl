@@ -2,14 +2,14 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { env } from '~/env'
-import { getUser } from '~/lib/auth'
+import { getCorbadoUser } from '~/lib/auth'
 
 import Logout from '../_components/Logout'
 import ThemeSelect from './_components/ThemeSelect'
 
 export default async function Page() {
   try {
-    const user = await getUser()
+    const user = await getCorbadoUser()
 
     return <Profile userId={user.getID()} username={user.getEmail()} />
   } catch (error) {
