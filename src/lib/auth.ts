@@ -15,8 +15,7 @@ export function getNodeSDK() {
 }
 
 export async function validateAuth() {
-  const cookieStore = cookies()
-  const session = cookieStore.get('cbo_short_session')
+  const session = getUserSession()
   if (!session) return false
 
   try {
@@ -38,4 +37,24 @@ export async function validateAuth() {
   } catch (e) {
     return false
   }
+}
+
+/**
+ * Get the current user from the session or throw an error if not authenticated
+ */
+export async function getUser() {
+  const userId = await validateAuth()
+  const session = getUserSession()
+
+  if (!userId || !session) throw Error('Not authenticated')
+  const user = await sdk.sessions().getCurrentUser(session.value)
+
+  if (!user.isAuthenticated()) throw Error('Not authenticated')
+
+  return user
+}
+
+function getUserSession() {
+  const cookieStore = cookies()
+  return cookieStore.get('cbo_short_session')
 }
