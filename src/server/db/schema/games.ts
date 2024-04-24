@@ -4,13 +4,15 @@ import { integer, text } from 'drizzle-orm/sqlite-core'
 import { createTable } from '../createTable'
 import { users } from './users'
 
+const gameTypes = ['timed', 'daily', 'explorer'] as const
+
 export const games = createTable('games', {
   id: integer('id').notNull().primaryKey(),
   created_at: text('created_at')
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
   game_type: text('game_type', {
-    enum: ['timed', 'daily', 'explorer'],
+    enum: gameTypes,
   }).notNull(),
   tiles: text('tiles').notNull(),
   user_id: integer('user_id')
@@ -20,3 +22,5 @@ export const games = createTable('games', {
     words: string[]
   }>(),
 })
+
+export type GameType = (typeof gameTypes)[number]
