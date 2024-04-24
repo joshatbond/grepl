@@ -13,9 +13,7 @@ export const games = createTable('games', {
   created_at: text('created_at')
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  game_type: text('game_type', {
-    enum: gameTypes,
-  }).notNull(),
+  game_type: text('game_type', { enum: gameTypes }).notNull(),
   heat_map: text('words_found', { mode: 'json' }).$type<HeatMap>(),
   tiles: text('tiles').notNull(),
   user_id: integer('user_id')
