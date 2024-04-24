@@ -86,8 +86,6 @@ const gameStore = createStore(
       set(
         state => {
           state.gameStarted = false
-          state.tiles = _tiles
-          state.tileMap = {}
           state.currentWord = []
         },
         false,

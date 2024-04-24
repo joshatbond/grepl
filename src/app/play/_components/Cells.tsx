@@ -59,7 +59,7 @@ export default function Cells() {
         <Cell
           isAdjacent={adjCurrent.includes(index)}
           key={index}
-          letter={tile}
+          letter={gameStarted ? tile : ''}
           position={index}
         />
       ))}
@@ -127,7 +127,7 @@ function Cell({
         <div
           key={i}
           className={cx(
-            'bg-adjLine absolute h-[5px] w-full',
+            'absolute h-[5px] w-full bg-adjLine',
             style === 'r'
               ? '-right-1/2 top-1/2 -translate-y-1/2'
               : style === 'bl'
@@ -155,7 +155,7 @@ function Cell({
           className={cx(
             'absolute left-[2.5%] top-[2.5%] h-[95%] w-[95%] cursor-pointer rounded-[50%] border-none text-xl font-bold text-visible outline-none',
             selectedState.current === 'selected'
-              ? 'bg-tileSelected hover:bg-tileOnSelected focus:bg-tileOnSelected active:bg-tileOnSelected hover:text-inverted focus:text-inverted active:text-inverted'
+              ? 'bg-tileSelected hover:bg-tileOnSelected hover:text-inverted focus:bg-tileOnSelected focus:text-inverted active:bg-tileOnSelected active:text-inverted'
               : selectedState.current === 'adjacent'
                 ? 'bg-tileAdj hover:bg-tileOnAdj focus:bg-tileOnAdj active:bg-tileOnAdj'
                 : 'bg-tile'
