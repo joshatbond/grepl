@@ -170,9 +170,6 @@ async function GameList() {
               )}`}</p>
 
               <GameDate time={game.created_at} />
-              <p className="text-neutral-400">
-                {new Date(game.created_at).toLocaleDateString()}
-              </p>
             </div>
 
             <h2 className="text-4xl">{reduceScore(game.words_found?.words)}</h2>
