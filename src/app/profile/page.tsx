@@ -1,10 +1,13 @@
-import { cookies } from 'next/headers'
+import { desc, eq } from 'drizzle-orm'
 import { redirect } from 'next/navigation'
 
 import { env } from '~/env'
-import { getCorbadoUser } from '~/lib/auth'
+import { getCorbadoUser, getUserId } from '~/lib/auth'
+import { db } from '~/server/db'
+import { games } from '~/server/db/schema/games'
 
 import Logout from '../_components/Logout'
+import { calculatePointsEarned } from '../play/_store/utils'
 import ThemeSelect from './_components/ThemeSelect'
 
 export default async function Page() {
@@ -44,12 +47,142 @@ function Profile({ userId, username }: { userId: string; username: string }) {
       </section>
 
       <section>
-        <div className="flex items-baseline justify-between">
+        <div className="flex items-center justify-between">
           <span>Theme</span>
 
           <ThemeSelect />
         </div>
       </section>
+
+      <section>
+        <h2 className="text-xl">Games Played</h2>
+        <hr className="mb-2 border-selectPlaceholder" />
+
+        <GameList />
+      </section>
     </main>
   )
+}
+const mockData = [
+  {
+    id: 1,
+    created_at: '2024-04-24 01:51:01',
+    game_type: 'timed',
+    heat_map: {
+      '0': 1,
+      '1': 1,
+      '2': 1,
+      '3': 0,
+      '4': 3,
+      '5': 1,
+      '6': 1,
+      '7': 0,
+      '8': 3,
+      '9': 2,
+      '10': 0,
+      '11': 4,
+      '12': 1,
+      '13': 3,
+      '14': 4,
+      '15': 3,
+      max: 4,
+    },
+    tiles: ',,,,,,,,,,,,,,,',
+    user_id: 1,
+    words_found: {
+      words: ['NAP', 'PANG', 'PAN', 'GLAND', 'RANG', 'SIP', 'QUIP', 'ANY'],
+    },
+  },
+] as {
+  id: number
+  created_at: string
+  game_type: 'timed' | 'daily' | 'explorer'
+  heat_map:
+    | (Record<string, number> & {
+        max: number
+      })
+    | null
+  tiles: string
+  user_id: number
+  words_found: {
+    words: string[]
+  } | null
+}[]
+
+async function GameList() {
+  let gamesPlayed
+  if (env.NODE_ENV === 'development') {
+    gamesPlayed = mockData
+  } else {
+    const user = await getUserId()
+    if (!user) return null
+
+    gamesPlayed = await db.query.games.findMany({
+      where: eq(games.user_id, user.id),
+      orderBy: desc(games.created_at),
+    })
+  }
+
+  return (
+    <div className="flex flex-col items-center gap-2">
+      {gamesPlayed.map(game => (
+        <div
+          key={game.id}
+          className="flex max-w-sm flex-col gap-2 rounded-lg border border-gray-700 p-4 text-neutral-100 shadow-md"
+        >
+          <div className="flex justify-between">
+            <div>
+              <p className="font-bold">{`${game.game_type[0]!.toUpperCase()}${game.game_type.slice(
+                1
+              )}`}</p>
+
+              <p className="text-neutral-400">
+                {game.created_at.toLocaleString()}
+              </p>
+            </div>
+
+            <h2 className="text-4xl">{reduceScore(game.words_found?.words)}</h2>
+          </div>
+
+          <div className="mx-auto my-4 grid w-fit select-none grid-cols-4 grid-rows-4 gap-px">
+            {game.tiles.split('').map((tile, index) => {
+              console.log(game.heat_map)
+              const opacity = game.heat_map
+                ? (game.heat_map[index] ?? 0) / game.heat_map.max
+                : 0
+
+              return (
+                <div
+                  key={index}
+                  className="relative flex h-8 w-8 items-center justify-center rounded bg-neutral-400 text-black"
+                >
+                  <span
+                    className="absolute inset-0"
+                    style={{ backgroundColor: `rgba(21 128 61 / ${opacity})` }}
+                  />
+
+                  <span className="absolute">{tile}</span>
+                </div>
+              )
+            })}
+          </div>
+
+          <div>
+            <h3 className="mb-2 border-b font-bold">Words Found</h3>
+            <p className="text-neutral-400">
+              {game.words_found?.words
+                ?.filter(w => w.length > 2)
+                .sort((a, b) => b.length - a.length)
+                .join(' • ')}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function reduceScore(as?: string[]) {
+  if (!as) return 0
+  return as.reduce((a, v) => a + calculatePointsEarned(v.length), 0)
 }
