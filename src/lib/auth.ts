@@ -65,3 +65,22 @@ function getUserSession() {
   const cookieStore = cookies()
   return cookieStore.get('cbo_short_session')
 }
+
+/**
+ * Get the database user from the session cookie
+ * Throw an error if the user is not found in the database
+ */
+export async function getUserId() {
+  try {
+    const authUser = await validateAuth()
+    if (!authUser) throw Error('Not authenticated')
+
+    return await db
+      .select()
+      .from(users)
+      .where(eq(users.corbadoId, authUser))
+      .get()
+  } catch (error) {
+    throw Error('Not authenticated')
+  }
+}
