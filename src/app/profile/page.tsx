@@ -163,15 +163,9 @@ async function GameList() {
           className="flex max-w-sm flex-col gap-2 rounded-lg border border-gray-700 p-4 text-neutral-100 shadow-md"
         >
           <div className="flex justify-between">
-            <div>
-              <p className="font-bold">{`${game.game_type[0]!.toUpperCase()}${game.game_type.slice(
-                1
-              )}`}</p>
-
-              <p className="text-neutral-400">
-                {game.created_at.toLocaleString()}
-              </p>
-            </div>
+            <p className="font-bold">{`${game.game_type[0]!.toUpperCase()}${game.game_type.slice(
+              1
+            )}`}</p>
 
             <h2 className="text-4xl">{reduceScore(game.words_found?.words)}</h2>
           </div>
