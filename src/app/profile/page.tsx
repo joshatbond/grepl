@@ -66,31 +66,63 @@ function Profile({ userId, username }: { userId: string; username: string }) {
 const mockData = [
   {
     id: 1,
-    created_at: '2024-04-24 01:51:01',
+    created_at: '2024-04-24 02:59:04',
     game_type: 'timed',
     heat_map: {
-      '0': 1,
-      '1': 1,
-      '2': 1,
-      '3': 0,
-      '4': 3,
-      '5': 1,
-      '6': 1,
-      '7': 0,
+      '0': 3,
+      '1': 17,
+      '2': 19,
+      '3': 3,
+      '4': 10,
+      '5': 26,
+      '6': 19,
+      '7': 5,
       '8': 3,
-      '9': 2,
-      '10': 0,
-      '11': 4,
+      '9': 10,
+      '10': 2,
+      '11': 0,
       '12': 1,
-      '13': 3,
-      '14': 4,
-      '15': 3,
-      max: 4,
+      '13': 0,
+      '14': 0,
+      '15': 1,
+      max: 26,
     },
-    tiles: ',,,,,,,,,,,,,,,',
+    tiles: 'ESTLPAEHTYEYEQUTS',
     user_id: 1,
     words_found: {
-      words: ['NAP', 'PANG', 'PAN', 'GLAND', 'RANG', 'SIP', 'QUIP', 'ANY'],
+      words: [
+        'EATS',
+        'EAT',
+        'ATE',
+        'TEA',
+        'YEAST',
+        'YES',
+        'STATE',
+        'PASTEL',
+        'PASTE',
+        'PAS',
+        'PAST',
+        'STAT',
+        'STAY',
+        'AYES',
+        'AYE',
+        'EYES',
+        'EYE',
+        'TEAT',
+        'LEAPS',
+        'LEAP',
+        'HEATS',
+        'HEAT',
+        'HEAP',
+        'HEY',
+        'YAP',
+        'TAP',
+        'SEAT',
+        'THEY',
+        'SATE',
+        'SAT',
+        'SAP',
+      ],
     },
   },
 ] as {
@@ -145,29 +177,27 @@ async function GameList() {
           </div>
 
           <div className="mx-auto my-4 grid w-fit select-none grid-cols-4 grid-rows-4 gap-px">
-            {generateTiles(game.tiles)
-              .map(tile => tile === 'q')
-              .map((tile, index) => {
-                const opacity = game.heat_map
-                  ? (game.heat_map[index] ?? 0) / game.heat_map.max
-                  : 0
+            {generateTiles(game.tiles).map((tile, index) => {
+              const opacity = game.heat_map
+                ? (game.heat_map[index] ?? 0) / game.heat_map.max
+                : 0
 
-                return (
-                  <div
-                    key={index}
-                    className="relative flex h-8 w-8 items-center justify-center rounded bg-neutral-400 text-black"
-                  >
-                    <span
-                      className="absolute inset-0"
-                      style={{
-                        backgroundColor: `rgba(21 128 61 / ${opacity})`,
-                      }}
-                    />
+              return (
+                <div
+                  key={index}
+                  className="relative flex h-8 w-8 items-center justify-center rounded bg-neutral-400 text-black"
+                >
+                  <span
+                    className="absolute inset-0"
+                    style={{
+                      backgroundColor: `rgba(21 128 61 / ${opacity})`,
+                    }}
+                  />
 
-                    <span className="absolute">{tile}</span>
-                  </div>
-                )
-              })}
+                  <span className="absolute">{tile}</span>
+                </div>
+              )
+            })}
           </div>
 
           <div>
@@ -194,7 +224,7 @@ function generateTiles(tiles: string) {
   for (let i = letters.length; i >= 0; i--) {
     if (letters[i] === 'Q') {
       letters[i] = 'Qu'
-      letters.splice(i - 1, 1)
+      letters.splice(i + 1, 1)
     }
   }
 
