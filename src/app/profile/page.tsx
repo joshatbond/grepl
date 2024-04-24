@@ -2,31 +2,23 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { env } from '~/env'
-import getNodeSDK from '~/lib/getNodeSdk'
+import { getCorbadoUser } from '~/lib/auth'
 
 import Logout from '../_components/Logout'
 import ThemeSelect from './_components/ThemeSelect'
 
 export default async function Page() {
-  const cookieStore = cookies()
-  const session = cookieStore.get('cbo_short_session')
-
-  if (!session) {
-    if (env.NODE_ENV !== 'development') return redirect('/')
-
-    return <Profile userId="SOME ID GOES HERE" username="josh@cursedtale.com" />
-  }
-  const sdk = getNodeSDK()
-
-  let user
   try {
-    user = await sdk.sessions().getCurrentUser(session.value)
-    if (!user.isAuthenticated()) throw Error
+    const user = await getCorbadoUser()
+
+    return <Profile userId={user.getID()} username={user.getEmail()} />
   } catch (error) {
+    if (env.NODE_ENV === 'development') {
+      return <Profile userId="SOME ID GOES HERE" username="foo@example.com" />
+    }
+
     return redirect('/')
   }
-
-  return <Profile userId={user.getID()} username={user.getEmail()} />
 }
 
 function Profile({ userId, username }: { userId: string; username: string }) {
@@ -40,7 +32,7 @@ function Profile({ userId, username }: { userId: string; username: string }) {
 
       <section>
         <h2 className="text-xl">User Info</h2>
-        <hr className="border-selectPlaceholder mb-2" />
+        <hr className="mb-2 border-selectPlaceholder" />
         <div className="flex justify-between">
           <span>Id</span>
           <span>{userId}</span>
