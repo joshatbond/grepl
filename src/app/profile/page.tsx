@@ -145,25 +145,29 @@ async function GameList() {
           </div>
 
           <div className="mx-auto my-4 grid w-fit select-none grid-cols-4 grid-rows-4 gap-px">
-            {game.tiles.split('').map((tile, index) => {
-              const opacity = game.heat_map
-                ? (game.heat_map[index] ?? 0) / game.heat_map.max
-                : 0
+            {generateTiles(game.tiles)
+              .map(tile => tile === 'q')
+              .map((tile, index) => {
+                const opacity = game.heat_map
+                  ? (game.heat_map[index] ?? 0) / game.heat_map.max
+                  : 0
 
-              return (
-                <div
-                  key={index}
-                  className="relative flex h-8 w-8 items-center justify-center rounded bg-neutral-400 text-black"
-                >
-                  <span
-                    className="absolute inset-0"
-                    style={{ backgroundColor: `rgba(21 128 61 / ${opacity})` }}
-                  />
+                return (
+                  <div
+                    key={index}
+                    className="relative flex h-8 w-8 items-center justify-center rounded bg-neutral-400 text-black"
+                  >
+                    <span
+                      className="absolute inset-0"
+                      style={{
+                        backgroundColor: `rgba(21 128 61 / ${opacity})`,
+                      }}
+                    />
 
-                  <span className="absolute">{tile}</span>
-                </div>
-              )
-            })}
+                    <span className="absolute">{tile}</span>
+                  </div>
+                )
+              })}
           </div>
 
           <div>
@@ -184,4 +188,15 @@ async function GameList() {
 function reduceScore(as?: string[]) {
   if (!as) return 0
   return as.reduce((a, v) => a + calculatePointsEarned(v.length), 0)
+}
+function generateTiles(tiles: string) {
+  const letters = tiles.split('')
+  for (let i = letters.length; i >= 0; i--) {
+    if (letters[i] === 'Q') {
+      letters[i] = 'Qu'
+      letters.splice(i - 1, 1)
+    }
+  }
+
+  return letters
 }
