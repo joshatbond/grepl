@@ -50,7 +50,7 @@ export default function Game() {
     finishGame({
       gameType: 'timed',
       heatMap,
-      tiles: tiles.join(),
+      tiles: tiles.join(''),
       words: wordList,
     }).catch(err => console.log(err))
   }, [gameStarted, heatMap, tiles, wordList])
