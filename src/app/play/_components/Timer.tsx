@@ -49,8 +49,8 @@ export default function Timer() {
       <p
         className={cx(
           'text-center text-xl font-bold',
-          timeIndicator == 'warning' && 'text-[--clr-text-warn]',
-          timeIndicator == 'danger' && 'text-[--clr-text-danger]'
+          timeIndicator == 'warning' && 'text-textWarn',
+          timeIndicator == 'danger' && 'text-textDanger'
         )}
       >
         {timeString}
