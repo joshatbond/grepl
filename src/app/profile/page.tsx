@@ -8,6 +8,7 @@ import { games } from '~/server/db/schema/games'
 
 import Logout from '../_components/Logout'
 import { calculatePointsEarned } from '../play/_store/utils'
+import GameDate from './_components/GameDate'
 import ThemeSelect from './_components/ThemeSelect'
 
 export default async function Page() {
@@ -66,7 +67,7 @@ function Profile({ userId, username }: { userId: string; username: string }) {
 const mockData = [
   {
     id: 1,
-    created_at: '2024-04-24 02:59:04',
+    created_at: Date.now(),
     game_type: 'timed',
     heat_map: {
       '0': 3,
@@ -127,7 +128,7 @@ const mockData = [
   },
 ] as {
   id: number
-  created_at: string
+  created_at: number
   game_type: 'timed' | 'daily' | 'explorer'
   heat_map:
     | (Record<string, number> & {
@@ -168,6 +169,7 @@ async function GameList() {
                 1
               )}`}</p>
 
+              <GameDate time={game.created_at} />
               <p className="text-neutral-400">
                 {new Date(game.created_at).toLocaleDateString()}
               </p>
