@@ -146,7 +146,6 @@ async function GameList() {
 
           <div className="mx-auto my-4 grid w-fit select-none grid-cols-4 grid-rows-4 gap-px">
             {game.tiles.split('').map((tile, index) => {
-              console.log(game.heat_map)
               const opacity = game.heat_map
                 ? (game.heat_map[index] ?? 0) / game.heat_map.max
                 : 0
